@@ -2,8 +2,9 @@
 <html lang="zh">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=0.5, user-scalable=yes">
-	<title>公斤換算台斤價錢(公斤/台斤/克/兩,價格換算) / 킬로그램-대근 가격 변환(킬로/대근/그램/냥, 가격 환산)</title>
+	<meta name="viewport"
+				content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=0.5, user-scalable=yes">
+	<title>公斤換算台斤價錢(公斤/台斤/克/兩,價格換算) / 킬로그램-대만 근 가격 변환(킬로/대만 근/그램/냥, 가격 환산)</title>
 	<style type="text/css">
 		@media all
 		{
@@ -46,14 +47,22 @@
 				width: 99%;
 			}
 
+			#tblPanel thead th, .td-price
+			{
+				text-align: center;
+			}
+
 			#tblPanel td
 			{border: 1px solid #cccccc;padding: 2px 12px 2px 2px}
 
 			#kg, #kg_price, #g, #g_price, #taijin, #taijin_price, #tailiang, #tailiang_price
-			{width: 5em}
+			{width: 5em;text-align: right;}
 
-			.gram_price
-			{font-size: 1.5rem;color: blue}
+			#kg_price, #g_price, #taijin_price, #tailiang_price
+			{text-align: center;}
+
+			.gram_price, .gram_price td
+			{font-size: 1.5rem;color: blue;text-align: center;}
 
 			.nowrap
 			{white-space: nowrap;}
@@ -80,222 +89,261 @@
 		}
 	</style>
 </head>
-<body><div class="body-container">
-<h1 id="h1_title">不同單位的價格換算 / 서로 다른 단위의 가격 환산</h1>
-<form>
-	<div id="divPanel">
-		<table id="tblPanel">
-			<tr class="tr1">
-				<td><input id="kg" type="number" onchange="cal(this);" onkeyup="cal(this);" placeholder="1" title="公斤"
-									 value="1"> 公斤(KG) / 킬로그램(KG)
-				</td>
-				<td><input id="kg_price" type="number" onchange="cal(this);" onkeyup="cal(this);" title="一公斤多少錢"
-									 placeholder="?"> 元(원)
-				</td>
-			</tr>
-			<tr class="tr2">
-				<td><input id="g" type="number" onchange="cal(this);" onkeyup="cal(this);" placeholder="100" title="公克"
-									 value="100"> 公克(g) / 그램(g)
-				</td>
-				<td><input id="g_price" type="number" onchange="cal(this);" onkeyup="cal(this);" title="100克多少錢"
-									 placeholder="?"> 元(원)
-				</td>
-			</tr>
-			<tr class="tr1">
-				<td><input id="taijin" type="number" onchange="cal(this);" onkeyup="cal(this);" placeholder="1" title="台斤"
-									 value="1"> 台斤 / 대근
-				</td>
-				<td><input id="taijin_price" type="number" onchange="cal(this);" onkeyup="cal(this);" title="一台斤多少錢"
-									 placeholder="?"> 元(원)
-				</td>
-			</tr>
-			<tr class="tr2">
-				<td><input id="tailiang" type="number" onchange="cal(this);" onkeyup="cal(this);" placeholder="1" title="台兩"
-									 value="1"> 台兩 / 냥
-				</td>
-				<td><input id="tailiang_price" type="number" onchange="cal(this);" onkeyup="cal(this);" title="一兩多少錢"
-									 placeholder="?"> 元(원)
-				</td>
-			</tr>
-		</table>
-		<div style="margin-top:5px;" id="msg">填入任一價格，不同單位會自動轉換<br>아무 가격이나 입력하면, 다른 단위가 자동으로 변환됩니다</div>
-	</div>
-</form>
+<body>
+<div class="body-container">
+	<h1 id="h1_title">不同單位的價格換算 / 서로 다른 단위의 가격 환산</h1>
+	<form>
+		<div id="divPanel">
+			<table id="tblPanel">
+				<thead>
+				<tr>
+					<th>單位 / 단위의</th>
+					<th>元 / 원</th>
+				</tr>
+				</thead>
+				<tr class="tr1">
+					<td><input id="kg" type="number" onchange="cal(this);" onkeyup="cal(this);" placeholder="1" title="公斤"
+										 value="1"> 公斤 / 킬로그램 / KG
+					</td>
+					<td class="td-price"><input id="kg_price" type="number" onchange="cal(this);" onkeyup="cal(this);"
+																			title="一公斤多少錢"
+																			placeholder="???">
+					</td>
+				</tr>
+				<tr class="tr2">
+					<td><input id="g" type="number" onchange="cal(this);" onkeyup="cal(this);" placeholder="100" title="公克"
+										 value="100"> 公克 / 그램 / grams / g
+					</td>
+					<td class="td-price"><input id="g_price" type="number" onchange="cal(this);" onkeyup="cal(this);"
+																			title="100克多少錢"
+																			placeholder="???">
+					</td>
+				</tr>
+				<tr class="tr1">
+					<td><input id="taijin" type="number" onchange="cal(this);" onkeyup="cal(this);" placeholder="1" title="台斤"
+										 value="1"> 台斤 / 대만 근 / jin
+					</td>
+					<td class="td-price"><input id="taijin_price" type="number" onchange="cal(this);" onkeyup="cal(this);"
+																			title="一台斤多少錢"
+																			placeholder="???">
+					</td>
+				</tr>
+				<tr class="tr2">
+					<td><input id="tailiang" type="number" onchange="cal(this);" onkeyup="cal(this);" placeholder="1" title="台兩"
+										 value="1"> 台兩 / 냥 / liang
+					</td>
+					<td class="td-price"><input id="tailiang_price" type="number" onchange="cal(this);" onkeyup="cal(this);"
+																			title="一兩多少錢"
+																			placeholder="???">
+					</td>
+				</tr>
+			</table>
+			<div style="margin-top:5px;">填入任一價格，不同單位會自動轉換<br>아무 가격이나 입력하면, 다른 단위가 자동으로 변환됩니다</div>
+			<div style="margin-top:5px;" id="msg"></div>
+		</div>
+	</form>
 
-<p style="clear:both;margin-top:5px">
-	換算不同重量單位下的價格，包括公斤，公克，台斤，台兩。例如
-	1公斤130元，等於1台斤多少錢？
-	1台斤28元，換算成1公斤是多少錢？<br>
+	<p style="clear:both;margin-top:5px">
+		換算不同重量單位下的價格，包括公斤，公克，台斤，台兩。例如
+		1公斤130元，等於1台斤多少錢？
+		1台斤28元，換算成1公斤是多少錢？<br>
 
-	서로 다른 중량 단위의 가격을 환산합니다. 포함: 킬로그램, 그램, 대근, 냥. 예시:
-	1킬로그램이 130원이라면, 1대근은 얼마인가요?
-	1대근이 28원이라면, 1킬로그램은 얼마인가요?
-</p>
+		서로 다른 중량 단위의 가격을 환산합니다. 포함: 킬로그램, 그램, 대만 근, 냥. 예시:
+		1킬로그램이 130원이라면, 1대만 근은 얼마인가요?
+		1대만 근이 28원이라면, 1킬로그램은 얼마인가요?
+	</p>
 
-<h3>如何使用這個價格計算工具 / 이 가격 계산 도구 사용 방법</h3>
-<ul>
-	<li>第一，先確定重量單位是你要的，可以調整成300克，0.5斤(半斤)或2兩。</li>
-	<li>各個重量單位確定好，再輸入你知道的價格。</li>
-	<li>其他價格會自動計算</li>
-	<li>먼저, 원하는 중량 단위를 확인하세요. 예: 300그램, 0.5근(반근), 2냥.</li>
-	<li>단위를 확정한 후, 알고 있는 가격을 입력하세요.</li>
-	<li>나머지 가격은 자동으로 계산됩니다</li>
-</ul>
+	<h3>如何使用這個價格計算工具 / 이 가격 계산 도구 사용 방법</h3>
+	<ul>
+		<li>第一，先確定重量單位是你要的，可以調整成300克，0.5斤(半斤)或2兩。</li>
+		<li>各個重量單位確定好，再輸入你知道的價格。</li>
+		<li>其他價格會自動計算</li>
+		<li>먼저, 원하는 중량 단위를 확인하세요. 예: 300그램, 0.5근(반근), 2냥.</li>
+		<li>단위를 확정한 후, 알고 있는 가격을 입력하세요.</li>
+		<li>나머지 가격은 자동으로 계산됩니다</li>
+	</ul>
 
-<h3>重量單位轉換 / 중량 단위 변환</h3>
-<ul>
-	<li>1台斤等於600公克 / 1대근 = 600그램</li>
-	<li>1台斤是16兩，半斤8兩 / 1대근 = 16냥, 반근 = 8냥</li>
-	<li>1兩是37.5公克 / 1냥 = 37.5그램</li>
-	<li>1公斤 = 1000 公克 / 1킬로그램 = 1000그램</li>
-</ul>
+	<h3>重量單位轉換 / 중량 단위 변환</h3>
+	<ul>
+		<li>1台斤等於600公克 / 1대만 근 = 600그램</li>
+		<li>1台斤是16兩，半斤8兩 / 1대만 근 = 16냥, 반근 = 8냥</li>
+		<li>1兩是37.5公克 / 1냥 = 37.5그램</li>
+		<li>1公斤 = 1000 公克 / 1킬로그램 = 1000그램</li>
+	</ul>
 
-<h3>台斤換算公斤價格 / 대근을 킬로그램 가격으로 환산</h3>
-<p>1台斤30元，1公斤是多少錢？<br>
-	1台斤=600克=0.6公斤。<br>
-	30 &divide; 1 &divide; 0.6 = 50<br>
-	答：1公斤是50元<br>
-</p>
-<p>1대근이 30원일 때, 1킬로그램은 얼마인가요?<br>
-	1대근 = 600그램 = 0.6킬로그램<br>
-	30 &divide; 1 &divide; 0.6 = 50<br>
-	답: 1킬로그램은 50원<br>
-</p>
+	<h3>台斤換算公斤價格 / 대만 근을 킬로그램 가격으로 환산</h3>
+	<p>1台斤30元，1公斤是多少錢？<br>
+		1台斤=600克=0.6公斤。<br>
+		30 &divide; 1 &divide; 0.6 = 50<br>
+		答：1公斤是50元<br>
+	</p>
+	<p>1대만 근이 30원일 때, 1킬로그램은 얼마인가요?<br>
+		1대만 근 = 600그램 = 0.6킬로그램<br>
+		30 &divide; 1 &divide; 0.6 = 50<br>
+		답: 1킬로그램은 50원<br>
+	</p>
 
-<h3>公斤換算台斤價格 / 킬로그램을 대근 가격으로 환산</h3>
-<p>1公斤120元，1台斤是多少錢？<br>
-	1公斤=1000克，1台斤=600公克。<br>
-	120 &divide; 1000 &times; 600 = 72<br>
-	答：1台斤是72元<br>
-</p>
-<p>1킬로그램이 120원일 때, 1대근은 얼마인가요?<br>
-	1킬로그램 = 1000그램, 1대근 = 600그램<br>
-	120 &divide; 1000 &times; 600 = 72<br>
-	답: 1대근은 72원<br>
-</p>
+	<h3>公斤換算台斤價格 / 킬로그램을 대만 근 가격으로 환산</h3>
+	<p>1公斤120元，1台斤是多少錢？<br>
+		1公斤=1000克，1台斤=600公克。<br>
+		120 &divide; 1000 &times; 600 = 72<br>
+		答：1台斤是72元<br>
+	</p>
+	<p>1킬로그램이 120원일 때, 1대만 근은 얼마인가요?<br>
+		1킬로그램 = 1000그램, 1대만 근 = 600그램<br>
+		120 &divide; 1000 &times; 600 = 72<br>
+		답: 1대만 근은 72원<br>
+	</p>
 
-<script type="text/javascript">
-var e_kg = document.getElementById('kg');
-var e_kg_price = document.getElementById('kg_price');
-var e_g = document.getElementById('g');
-var e_g_price = document.getElementById('g_price');
-var e_taijin = document.getElementById('taijin');
-var e_taijin_price = document.getElementById('taijin_price');
-var e_tailiang = document.getElementById('tailiang');
-var e_tailiang_price = document.getElementById('tailiang_price');
-var e_msg = document.getElementById('msg');
+	<script type="text/javascript">
+	var e_kg = document.getElementById('kg');
+	var e_kg_price = document.getElementById('kg_price');
+	var e_g = document.getElementById('g');
+	var e_g_price = document.getElementById('g_price');
+	var e_taijin = document.getElementById('taijin');
+	var e_taijin_price = document.getElementById('taijin_price');
+	var e_tailiang = document.getElementById('tailiang');
+	var e_tailiang_price = document.getElementById('tailiang_price');
+	var e_msg = document.getElementById('msg');
 
-function cal(t)
-{
-
-	function clear_all_price(except_ipt)
+	function cal(t)
 	{
-		var all_ipt = [e_kg_price, e_g_price, e_taijin_price, e_tailiang_price];
-		for (i = 0; i < all_ipt.length; i++)
+
+		function clear_all_price(except_ipt)
 		{
-			if (all_ipt[i] !== except_ipt)
-			{all_ipt[i].value = '';}
-		}
-	}
-
-	function fix_bad_units()
-	{
-		if (e_kg.value == '' || isNaN(e_kg.value))
-		{e_kg.value = 1;}
-		if (e_g.value == '' || isNaN(e_g.value))
-		{e_g.value = 100;}
-		if (e_taijin.value == '' || isNaN(e_taijin.value))
-		{e_taijin.value = 1;}
-		if (e_tailiang.value == '' || isNaN(e_tailiang.value))
-		{e_tailiang.value = 1;}
-	}
-
-	var tv = t.value.trim();
-
-	if (t.value == '' || isNaN(tv))
-	{
-		clear_all_price(t);
-	}
-	else
-	{
-		fix_bad_units();
-
-		if (t == e_kg_price)
-		{
-			per_kg_yuan = e_kg_price.value / e_kg.value;
-			e_g_price.value = Math.round(per_kg_yuan / 1000 * e_g.value * 100) / 100;
-			e_taijin_price.value = Math.round(per_kg_yuan * 0.6 * e_taijin.value * 10) / 10;
-			e_tailiang_price.value = Math.round(per_kg_yuan * 0.0375 * e_tailiang.value * 100) / 100;
-			gram_price = Math.round(e_g_price.value / e_g.value * 1000) / 1000;
-			e_msg.innerHTML = '如果' + e_kg.value + '公斤的價格是' + e_kg_price.value + '元' +
-				'，那麼' + e_g.value + '公克將會是' + e_g_price.value + '元' +
-				'，<br>換算成' + e_taijin.value + '台斤會是' + e_taijin_price.value + '元' +
-				'，' + e_tailiang.value + '兩的價格，則是' + e_tailiang_price.value + '元。' +
-				'<br>' +
-				'만약 ' + e_kg.value + '킬로그램의 가격이 ' + e_kg_price.value + '원이라면, ' + e_g.value + '그램은 ' + e_g_price.value + '원, ' +
-				e_taijin.value + '대근은 ' + e_taijin_price.value + '원, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원입니다.' +
-				'<div class="gram_price">**每公克' + gram_price + '元 / **그램당' + gram_price + '원</div>';
-
-		}
-		else if (t == e_g_price)
-		{
-
-			per_g_yuan = e_g_price.value / e_g.value;
-			e_kg_price.value = Math.round(per_g_yuan * 1000 * e_kg.value * 10) / 10;
-			e_taijin_price.value = Math.round(per_g_yuan * 600 * e_taijin.value * 10) / 10;
-			e_tailiang_price.value = Math.round(per_g_yuan * 37.5 * e_tailiang.value * 100) / 100;
-			gram_price = Math.round(e_g_price.value / e_g.value * 1000) / 1000;
-			e_msg.innerHTML = '如果' + e_g.value + '公克的價格是' + e_g_price.value + '元' +
-				'，那麼' + e_kg.value + '公斤就是' + e_kg_price.value + '元' +
-				'，<br>換算成' + e_taijin.value + '台斤會是' + e_taijin_price.value + '元' +
-				'，' + e_tailiang.value + '兩的價格，則是' + e_tailiang_price.value + '元。' +
-				'<br>' +
-				'만약 ' + e_g.value + '그램의 가격이 ' + e_g_price.value + '원이라면, ' + e_kg.value + '킬로그램은 ' + e_kg_price.value + '원, <br>' +
-				e_taijin.value + '대근은 ' + e_taijin_price.value + '원, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원입니다.' +
-				'<div class="gram_price">**每公克' + gram_price + '元 / **그램당' + gram_price + '원</div>';
-
-		}
-		else if (t == e_taijin_price)
-		{
-
-			per_taijin_yuan = e_taijin_price.value / e_taijin.value;
-			e_kg_price.value = Math.round(per_taijin_yuan / 0.6 * e_kg.value * 10) / 10;
-			e_g_price.value = Math.round(per_taijin_yuan / 600 * e_g.value * 100) / 100;
-			e_tailiang_price.value = Math.round(per_taijin_yuan / 16 * e_tailiang.value * 100) / 100;
-			gram_price = Math.round(e_g_price.value / e_g.value * 1000) / 1000;
-			e_msg.innerHTML = '如果' + e_taijin.value + '台斤的價格是' + e_taijin_price.value + '元' +
-				'，那麼' + e_tailiang.value + '兩就是' + e_tailiang_price.value + '元' +
-				'，<br>換算成' + e_kg.value + '公斤將會是' + e_kg_price.value + '元' +
-				'，' + e_g.value + '克的價格，則是' + e_g_price.value + '元。' +
-				'<br>' +
-				'만약 ' + e_taijin.value + '대근의 가격이 ' + e_taijin_price.value + '원이라면, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원, <br>' +
-				e_kg.value + '킬로그램은 ' + e_kg_price.value + '원, ' + e_g.value + '그램은 ' + e_g_price.value + '원입니다.' +
-				'<div class="gram_price">**每公克' + gram_price + '元 / **그램당' + gram_price + '원</div>';
-
-		}
-		else if (t == e_tailiang_price)
-		{
-
-			per_tailiang_yuan = e_tailiang_price.value / e_tailiang.value;
-			e_kg_price.value = Math.round(per_tailiang_yuan / 0.0375 * e_kg.value * 10) / 10;
-			e_g_price.value = Math.round(per_tailiang_yuan / 37.5 * e_g.value * 100) / 100;
-			e_taijin_price.value = Math.round(per_tailiang_yuan * 16 * e_taijin.value * 10) / 10;
-			gram_price = Math.round(e_g_price.value / e_g.value * 1000) / 1000;
-			e_msg.innerHTML = '如果' + e_tailiang.value + '兩要價' + e_tailiang_price.value + '元' +
-				'，那麼' + e_taijin.value + '台斤就需要' + e_taijin_price.value + '元' +
-				'，<br>換算成' + e_kg.value + '公斤將會是' + e_kg_price.value + '元' +
-				'，' + e_g.value + '克的價格，則是' + e_g_price.value + '元。' +
-				'<br>' +
-				'만약 ' + e_tailiang.value + '냥의 가격이 ' + e_tailiang_price.value + '원이라면, ' + e_taijin.value + '대근은 ' + e_taijin_price.value + '원, <br>' +
-				e_kg.value + '킬로그램은 ' + e_kg_price.value + '원, ' + e_g.value + '그램은 ' + e_g_price.value + '원입니다.' +
-				'<div class="gram_price">**每公克' + gram_price + '元 / **그램당' + gram_price + '원</div>';
+			var all_ipt = [e_kg_price, e_g_price, e_taijin_price, e_tailiang_price];
+			for (i = 0; i < all_ipt.length; i++)
+			{
+				if (all_ipt[i] !== except_ipt)
+				{all_ipt[i].value = '';}
+			}
 		}
 
-	}
+		function fix_bad_units()
+		{
+			if (is_bad_value(e_kg.value))
+			{e_kg.value = 1;}
+			if (is_bad_value(e_g.value))
+			{e_g.value = 100;}
+			if (is_bad_value(e_taijin.value))
+			{e_taijin.value = 1;}
+			if (is_bad_value(e_tailiang.value))
+			{e_tailiang.value = 1;}
+		}
 
-} //eof cal
+		function is_bad_value(tv)
+		{
+			return isNaN(tv) || tv == '' || tv <= 0
+		}
 
-</script>
+		var tv = t.value.trim();
 
-</div></body>
+		if (t.value == '' || is_bad_value(tv))
+		{
+			clear_all_price(t);
+		}
+		else
+		{
+			fix_bad_units();
+			let per_kg_yuan = 0;
+			let per_g_yuan = 0;
+			let per_taijin_yuan = 0;
+			let per_tailiang_yuan = 0;
+
+			let _ok = false;
+
+			e_msg.innerHTML = '';
+
+			if ((t == e_kg_price || t == e_kg) && !is_bad_value(e_kg_price.value))
+			{
+				per_kg_yuan = e_kg_price.value / e_kg.value;
+				e_g_price.value = Math.round(per_kg_yuan / 1000 * e_g.value * 100) / 100;
+				e_taijin_price.value = Math.round(per_kg_yuan * 0.6 * e_taijin.value * 10) / 10;
+				e_tailiang_price.value = Math.round(per_kg_yuan * 0.0375 * e_tailiang.value * 100) / 100;
+
+				e_msg.innerHTML = '如果' + e_kg.value + '公斤的價格是' + e_kg_price.value + '元' +
+					'，那麼' + e_g.value + '公克將會是' + e_g_price.value + '元' +
+					'，<br>換算成' + e_taijin.value + '台斤會是' + e_taijin_price.value + '元' +
+					'，' + e_tailiang.value + '兩的價格，則是' + e_tailiang_price.value + '元。' +
+					'<br>' +
+					'만약 ' + e_kg.value + '킬로그램의 가격이 ' + e_kg_price.value + '원이라면, ' + e_g.value + '그램은 ' + e_g_price.value + '원, ' +
+					e_taijin.value + '대만 근은 ' + e_taijin_price.value + '원, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원입니다.';
+
+				_ok = true;
+			}
+			else if ((t == e_g_price || t == e_g) && !is_bad_value(e_g_price.value))
+			{
+
+				per_g_yuan = e_g_price.value / e_g.value;
+				e_kg_price.value = Math.round(per_g_yuan * 1000 * e_kg.value * 10) / 10;
+				e_taijin_price.value = Math.round(per_g_yuan * 600 * e_taijin.value * 10) / 10;
+				e_tailiang_price.value = Math.round(per_g_yuan * 37.5 * e_tailiang.value * 100) / 100;
+
+				e_msg.innerHTML = '如果' + e_g.value + '公克的價格是' + e_g_price.value + '元' +
+					'，那麼' + e_kg.value + '公斤就是' + e_kg_price.value + '元' +
+					'，<br>換算成' + e_taijin.value + '台斤會是' + e_taijin_price.value + '元' +
+					'，' + e_tailiang.value + '兩的價格，則是' + e_tailiang_price.value + '元。' +
+					'<br>' +
+					'만약 ' + e_g.value + '그램의 가격이 ' + e_g_price.value + '원이라면, ' + e_kg.value + '킬로그램은 ' + e_kg_price.value + '원, <br>' +
+					e_taijin.value + '대만 근은 ' + e_taijin_price.value + '원, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원입니다.';
+
+				_ok = true;
+			}
+			else if ((t == e_taijin_price || t == e_taijin) && !is_bad_value(e_taijin_price.value))
+			{
+
+				per_taijin_yuan = e_taijin_price.value / e_taijin.value;
+				e_kg_price.value = Math.round(per_taijin_yuan / 0.6 * e_kg.value * 10) / 10;
+				e_g_price.value = Math.round(per_taijin_yuan / 600 * e_g.value * 100) / 100;
+				e_tailiang_price.value = Math.round(per_taijin_yuan / 16 * e_tailiang.value * 100) / 100;
+
+				e_msg.innerHTML = '如果' + e_taijin.value + '台斤的價格是' + e_taijin_price.value + '元' +
+					'，那麼' + e_tailiang.value + '兩就是' + e_tailiang_price.value + '元' +
+					'，<br>換算成' + e_kg.value + '公斤將會是' + e_kg_price.value + '元' +
+					'，' + e_g.value + '克的價格，則是' + e_g_price.value + '元。' +
+					'<br>' +
+					'만약 ' + e_taijin.value + '대만 근의 가격이 ' + e_taijin_price.value + '원이라면, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원, <br>' +
+					e_kg.value + '킬로그램은 ' + e_kg_price.value + '원, ' + e_g.value + '그램은 ' + e_g_price.value + '원입니다.';
+
+				_ok = true;
+			}
+			else if ((t == e_tailiang_price || t == e_tailiang) && !is_bad_value(e_tailiang_price.value))
+			{
+
+				per_tailiang_yuan = e_tailiang_price.value / e_tailiang.value;
+				e_kg_price.value = Math.round(per_tailiang_yuan / 0.0375 * e_kg.value * 10) / 10;
+				e_g_price.value = Math.round(per_tailiang_yuan / 37.5 * e_g.value * 100) / 100;
+				e_taijin_price.value = Math.round(per_tailiang_yuan * 16 * e_taijin.value * 10) / 10;
+
+				e_msg.innerHTML = '如果' + e_tailiang.value + '兩要價' + e_tailiang_price.value + '元' +
+					'，那麼' + e_taijin.value + '台斤就需要' + e_taijin_price.value + '元' +
+					'，<br>換算成' + e_kg.value + '公斤將會是' + e_kg_price.value + '元' +
+					'，' + e_g.value + '克的價格，則是' + e_g_price.value + '元。' +
+					'<br>' +
+					'만약 ' + e_tailiang.value + '냥의 가격이 ' + e_tailiang_price.value + '원이라면, ' + e_taijin.value + '대만 근은 ' + e_taijin_price.value + '원, <br>' +
+					e_kg.value + '킬로그램은 ' + e_kg_price.value + '원, ' + e_g.value + '그램은 ' + e_g_price.value + '원입니다.';
+
+				_ok = true;
+			}
+
+			if (_ok)
+			{
+				let gram_price = Math.round(e_g_price.value / e_g.value * 1000) / 1000;
+				let kg_price = gram_price * 1000;
+				let taijin_price = gram_price * 600;
+
+				e_msg.innerHTML += '<table class="gram_price">'
+					+ (e_g.value > 1 ? '<tr><td>每公克(그램당／g)</td><td>' + gram_price + '元(원)</td></tr>' : '')
+					+ (e_kg.value > 1 ? '<tr><td>' + '每公斤(킬로그램／KG)</td><td>' + kg_price + '元(원)</td></tr>' : '')
+					+ (e_taijin.value > 1 ? '<tr><td>' + '每台斤(대만 근／jin)</td><td>' + taijin_price + '元(원)</td></tr>' : '')
+					+ '</table>';
+			}
+		}
+
+	} //eof cal
+
+	</script>
+
+</div>
+</body>
 </html>
