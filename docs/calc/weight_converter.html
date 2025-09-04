@@ -442,16 +442,16 @@
 
 		e_msg.innerHTML = '<table class="gram_price">'
 			+ (e_g.value > 1
-				? '<tr><td>每公克(그램당／g)</td><td>' + fmtKRW(gram_price) + '元(원)</td><td id="gram_price_g_krw"></td></tr>'
+				? '<tr><td>每公克(그램당／g)</td><td>＝ ' + fmtKRW(gram_price) + '元(원)</td><td id="gram_price_g_krw"></td></tr>'
 				: '')
 			+ (e_kg.value > 1
-				? '<tr><td>' + '每公斤(킬로그램／KG)</td><td>' + fmtKRW(kg_price) + '元(원)</td><td id="gram_price_kg_krw"></td></tr>'
+				? '<tr><td>' + '每公斤(킬로그램／KG)</td><td>＝ ' + fmtKRW(kg_price) + '元(원)</td><td id="gram_price_kg_krw"></td></tr>'
 				: '')
 			+ (e_taijin.value > 1
-				? '<tr><td>' + '每台斤(대만 근／jin)</td><td>' + fmtKRW(taijin_price) + '元(원)</td><td id="gram_price_taijin_krw"></td></tr>'
+				? '<tr><td>' + '每台斤(대만 근／jin)</td><td>＝ ' + fmtKRW(taijin_price) + '元(원)</td><td id="gram_price_taijin_krw"></td></tr>'
 				: '')
 			+ (e_tailiang.value > 1
-				? '<tr><td>' + '台兩(냥／liang)</td><td>' + fmtKRW(tailiang_price) + '元(원)</td><td id="gram_price_tailiang_krw"></td></tr>'
+				? '<tr><td>' + '每台兩(냥／liang)</td><td>＝ ' + fmtKRW(tailiang_price) + '元(원)</td><td id="gram_price_tailiang_krw"></td></tr>'
 				: '')
 			+ '</table>';
 		updateKRWDisplays();
