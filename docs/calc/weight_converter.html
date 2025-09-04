@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=0.5, user-scalable=yes">
 	<title>公斤換算台斤價錢(公斤/台斤/克/兩,價格換算) / 킬로그램-대근 가격 변환(킬로/대근/그램/냥, 가격 환산)</title>
 	<style type="text/css">
 		@media all
@@ -34,18 +35,6 @@
 			.tr2:hover
 			{background-color: #f9d1d5;}
 
-			.imgAD
-			{float: left;border: 0px;margin-right: 5px}
-
-			.divAD
-			{margin: 0px 0px 5px 0px;clear: both;padding: 2px;border: 1px solid gray;background: #FFFFCC;}
-
-			.divADTitle
-			{font-weight: bold; }
-
-			.divADDesp
-			{}
-
 			#divPanel
 			{border-width: 1px;border-style: solid;border-color: green;max-width: 600px;padding: 2px;}
 
@@ -63,29 +52,14 @@
 			.gram_price
 			{font-size: 1.5rem;color: blue}
 
-			.divContainer
-			{height: auto;overflow: hidden;}
-
-			.divRight
-			{width: 300px;float: right;}
-
-			.divLeft
-			{float: none;width: auto;overflow: hidden;}
-
 			.nowrap
 			{white-space: nowrap;}
-		}
-
-		@media only screen and (max-width: 950px)
-		{
-			.divRight
-			{display: none;}
 		}
 
 		@media only screen and (max-width: 800px)
 		{
 			#h1_title
-			{margin: 0px;padding: 0px;font-size: 22px;}
+			{margin: 0px;padding: 0px;}
 
 			#divPanel
 			{border-width: 1px;border-style: solid;border-color: green;width: 99%;padding: 10px;}
@@ -93,15 +67,17 @@
 
 		@media only screen and (max-width: 500px)
 		{
-			body
-			{margin: 0px}
-
 			#divPanel
 			{width: 99%;padding: 2px;}
 		}
+
+		.body-container
+		{
+			padding: 15px;
+		}
 	</style>
 </head>
-<body>
+<body><div class="body-container">
 <h1 id="h1_title">不同單位的價格換算 / 서로 다른 단위의 가격 환산</h1>
 <form>
 	<div id="divPanel">
@@ -318,5 +294,5 @@ function cal(t)
 
 </script>
 
-</body>
+</div></body>
 </html>
