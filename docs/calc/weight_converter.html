@@ -232,15 +232,17 @@ function cal(t)
 	}
 
 	var tv = t.value.trim();
-	if (t == e_kg_price)
+
+	if (t.value == '' || isNaN(tv))
 	{
-		if (t.value == '' || isNaN(tv))
+		clear_all_price(t);
+	}
+	else
+	{
+		fix_bad_units();
+
+		if (t == e_kg_price)
 		{
-			clear_all_price(t);
-		}
-		else
-		{
-			fix_bad_units();
 			per_kg_yuan = e_kg_price.value / e_kg.value;
 			e_g_price.value = Math.round(per_kg_yuan / 1000 * e_g.value * 100) / 100;
 			e_taijin_price.value = Math.round(per_kg_yuan * 0.6 * e_taijin.value * 10) / 10;
@@ -254,17 +256,11 @@ function cal(t)
 				'만약 ' + e_kg.value + '킬로그램의 가격이 ' + e_kg_price.value + '원이라면, ' + e_g.value + '그램은 ' + e_g_price.value + '원, ' +
 				e_taijin.value + '대근은 ' + e_taijin_price.value + '원, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원입니다.' +
 				'<div class="gram_price">**每公克' + gram_price + '元 / **그램당' + gram_price + '원</div>';
+
 		}
-	}
-	else if (t == e_g_price)
-	{
-		if (t.value == '' || isNaN(tv))
+		else if (t == e_g_price)
 		{
-			clear_all_price(t);
-		}
-		else
-		{
-			fix_bad_units();
+
 			per_g_yuan = e_g_price.value / e_g.value;
 			e_kg_price.value = Math.round(per_g_yuan * 1000 * e_kg.value * 10) / 10;
 			e_taijin_price.value = Math.round(per_g_yuan * 600 * e_taijin.value * 10) / 10;
@@ -278,17 +274,11 @@ function cal(t)
 				'만약 ' + e_g.value + '그램의 가격이 ' + e_g_price.value + '원이라면, ' + e_kg.value + '킬로그램은 ' + e_kg_price.value + '원, <br>' +
 				e_taijin.value + '대근은 ' + e_taijin_price.value + '원, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원입니다.' +
 				'<div class="gram_price">**每公克' + gram_price + '元 / **그램당' + gram_price + '원</div>';
+
 		}
-	}
-	else if (t == e_taijin_price)
-	{
-		if (t.value == '' || isNaN(tv))
+		else if (t == e_taijin_price)
 		{
-			clear_all_price(t);
-		}
-		else
-		{
-			fix_bad_units();
+
 			per_taijin_yuan = e_taijin_price.value / e_taijin.value;
 			e_kg_price.value = Math.round(per_taijin_yuan / 0.6 * e_kg.value * 10) / 10;
 			e_g_price.value = Math.round(per_taijin_yuan / 600 * e_g.value * 100) / 100;
@@ -302,17 +292,11 @@ function cal(t)
 				'만약 ' + e_taijin.value + '대근의 가격이 ' + e_taijin_price.value + '원이라면, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원, <br>' +
 				e_kg.value + '킬로그램은 ' + e_kg_price.value + '원, ' + e_g.value + '그램은 ' + e_g_price.value + '원입니다.' +
 				'<div class="gram_price">**每公克' + gram_price + '元 / **그램당' + gram_price + '원</div>';
+
 		}
-	}
-	else if (t == e_tailiang_price)
-	{
-		if (t.value == '' || isNaN(tv))
+		else if (t == e_tailiang_price)
 		{
-			clear_all_price(t);
-		}
-		else
-		{
-			fix_bad_units();
+
 			per_tailiang_yuan = e_tailiang_price.value / e_tailiang.value;
 			e_kg_price.value = Math.round(per_tailiang_yuan / 0.0375 * e_kg.value * 10) / 10;
 			e_g_price.value = Math.round(per_tailiang_yuan / 37.5 * e_g.value * 100) / 100;
@@ -327,7 +311,9 @@ function cal(t)
 				e_kg.value + '킬로그램은 ' + e_kg_price.value + '원, ' + e_g.value + '그램은 ' + e_g_price.value + '원입니다.' +
 				'<div class="gram_price">**每公克' + gram_price + '元 / **그램당' + gram_price + '원</div>';
 		}
+
 	}
+
 } //eof cal
 
 </script>
