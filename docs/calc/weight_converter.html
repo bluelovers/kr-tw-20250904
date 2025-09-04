@@ -58,6 +58,9 @@
 			#kg, #kg_price, #g, #g_price, #taijin, #taijin_price, #tailiang, #tailiang_price
 			{width: 5em;text-align: right;}
 
+			#kg, #g, #taijin, #tailiang
+			{width: 3em;}
+
 			#kg_price, #g_price, #taijin_price, #tailiang_price
 			{text-align: center;}
 
@@ -66,6 +69,11 @@
 
 			.nowrap
 			{white-space: nowrap;}
+
+			#msg_desc
+			{
+				font-size: 1rem;
+			}
 		}
 
 		@media only screen and (max-width: 800px)
@@ -140,6 +148,7 @@
 			</table>
 			<div style="margin-top:5px;">填入任一價格，不同單位會自動轉換<br>아무 가격이나 입력하면, 다른 단위가 자동으로 변환됩니다</div>
 			<div style="margin-top:5px;" id="msg"></div>
+			<div style="margin-top:5px;" id="msg_desc"></div>
 		</div>
 	</form>
 
@@ -205,6 +214,7 @@
 	var e_tailiang = document.getElementById('tailiang');
 	var e_tailiang_price = document.getElementById('tailiang_price');
 	var e_msg = document.getElementById('msg');
+	var e_msg_desc = document.getElementById('msg_desc');
 
 	function cal(t)
 	{
@@ -261,13 +271,13 @@
 				e_taijin_price.value = Math.round(per_kg_yuan * 0.6 * e_taijin.value * 10) / 10;
 				e_tailiang_price.value = Math.round(per_kg_yuan * 0.0375 * e_tailiang.value * 100) / 100;
 
-				e_msg.innerHTML = '如果' + e_kg.value + '公斤的價格是' + e_kg_price.value + '元' +
+				e_msg_desc.innerHTML = '<p class="msg_desc">如果' + e_kg.value + '公斤的價格是' + e_kg_price.value + '元' +
 					'，那麼' + e_g.value + '公克將會是' + e_g_price.value + '元' +
 					'，<br>換算成' + e_taijin.value + '台斤會是' + e_taijin_price.value + '元' +
 					'，' + e_tailiang.value + '兩的價格，則是' + e_tailiang_price.value + '元。' +
 					'<br>' +
 					'만약 ' + e_kg.value + '킬로그램의 가격이 ' + e_kg_price.value + '원이라면, ' + e_g.value + '그램은 ' + e_g_price.value + '원, ' +
-					e_taijin.value + '대만 근은 ' + e_taijin_price.value + '원, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원입니다.';
+					e_taijin.value + '대만 근은 ' + e_taijin_price.value + '원, ' + e_tailiang.value + '냥은 ' + e_tailiang_price.value + '원입니다.</p>';
 
 				_ok = true;
 			}
@@ -279,7 +289,7 @@
 				e_taijin_price.value = Math.round(per_g_yuan * 600 * e_taijin.value * 10) / 10;
 				e_tailiang_price.value = Math.round(per_g_yuan * 37.5 * e_tailiang.value * 100) / 100;
 
-				e_msg.innerHTML = '如果' + e_g.value + '公克的價格是' + e_g_price.value + '元' +
+				e_msg_desc.innerHTML = '如果' + e_g.value + '公克的價格是' + e_g_price.value + '元' +
 					'，那麼' + e_kg.value + '公斤就是' + e_kg_price.value + '元' +
 					'，<br>換算成' + e_taijin.value + '台斤會是' + e_taijin_price.value + '元' +
 					'，' + e_tailiang.value + '兩的價格，則是' + e_tailiang_price.value + '元。' +
@@ -297,7 +307,7 @@
 				e_g_price.value = Math.round(per_taijin_yuan / 600 * e_g.value * 100) / 100;
 				e_tailiang_price.value = Math.round(per_taijin_yuan / 16 * e_tailiang.value * 100) / 100;
 
-				e_msg.innerHTML = '如果' + e_taijin.value + '台斤的價格是' + e_taijin_price.value + '元' +
+				e_msg_desc.innerHTML = '如果' + e_taijin.value + '台斤的價格是' + e_taijin_price.value + '元' +
 					'，那麼' + e_tailiang.value + '兩就是' + e_tailiang_price.value + '元' +
 					'，<br>換算成' + e_kg.value + '公斤將會是' + e_kg_price.value + '元' +
 					'，' + e_g.value + '克的價格，則是' + e_g_price.value + '元。' +
@@ -315,7 +325,7 @@
 				e_g_price.value = Math.round(per_tailiang_yuan / 37.5 * e_g.value * 100) / 100;
 				e_taijin_price.value = Math.round(per_tailiang_yuan * 16 * e_taijin.value * 10) / 10;
 
-				e_msg.innerHTML = '如果' + e_tailiang.value + '兩要價' + e_tailiang_price.value + '元' +
+				e_msg_desc.innerHTML = '如果' + e_tailiang.value + '兩要價' + e_tailiang_price.value + '元' +
 					'，那麼' + e_taijin.value + '台斤就需要' + e_taijin_price.value + '元' +
 					'，<br>換算成' + e_kg.value + '公斤將會是' + e_kg_price.value + '元' +
 					'，' + e_g.value + '克的價格，則是' + e_g_price.value + '元。' +
@@ -332,7 +342,7 @@
 				let kg_price = gram_price * 1000;
 				let taijin_price = gram_price * 600;
 
-				e_msg.innerHTML += '<table class="gram_price">'
+				e_msg.innerHTML = '<table class="gram_price">'
 					+ (e_g.value > 1 ? '<tr><td>每公克(그램당／g)</td><td>' + gram_price + '元(원)</td></tr>' : '')
 					+ (e_kg.value > 1 ? '<tr><td>' + '每公斤(킬로그램／KG)</td><td>' + kg_price + '元(원)</td></tr>' : '')
 					+ (e_taijin.value > 1 ? '<tr><td>' + '每台斤(대만 근／jin)</td><td>' + taijin_price + '元(원)</td></tr>' : '')
