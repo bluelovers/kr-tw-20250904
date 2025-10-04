@@ -110,7 +110,7 @@
 
 	</style>
 </head>
-<body>
+<body onload="initializeRate();">
 <div class="body-container">
 	<h1 id="h1_title">不同單位的價格換算／서로 다른 단위의 가격 환산</h1>
 	<form>
@@ -127,7 +127,7 @@
 						<label for="rate_krw">匯率：1元(TWD) = </label>
 						<input id="rate_krw" type="number" step="0.1" value="45.4"
 									 title="韓幣匯率(KRW per TWD)"
-									 onchange="fix_bad_units();updateKRWDisplays();" onkeyup="updateKRWDisplays();">
+									 onchange="saveCurrentRate();fix_bad_units();updateKRWDisplays();" onkeyup="updateKRWDisplays();">
 						<span>원(KRW)</span>
 					</td>
 				</tr>
@@ -245,6 +245,40 @@
 	var e_msg_desc = document.getElementById('msg_desc');
 	var e_rate_krw = document.getElementById('rate_krw');
 
+	// 匯率設定管理
+	var RATE_STORAGE_KEY = 'weight_converter_krw_rate';
+
+	function loadSavedRate() {
+		var saved = localStorage.getItem(RATE_STORAGE_KEY);
+		return saved ? parseFloat(saved) : 45.4;
+	}
+
+	function saveRate(rate) {
+		localStorage.setItem(RATE_STORAGE_KEY, rate.toString());
+	}
+
+	function saveCurrentRate() {
+		if (!is_bad_value(e_rate_krw.value)) {
+			var currentRate = parseFloat(e_rate_krw.value);
+			var defaultRate = 45.4;
+
+			// 檢查是否從來沒有儲存過匯率設定
+			var hasStoredRate = localStorage.getItem(RATE_STORAGE_KEY) !== null;
+
+			// 如果從來沒有儲存過，並且當前值等於預設值，則忽略儲存
+			if (!hasStoredRate && currentRate === defaultRate) {
+				return;
+			}
+
+			saveRate(e_rate_krw.value);
+		}
+	}
+
+	function initializeRate() {
+		var savedRate = loadSavedRate();
+		e_rate_krw.value = savedRate;
+	}
+
 	function fmtKRW(n)
 	{
 		return (Math.round(n * 100) / 100).toLocaleString();
@@ -259,7 +293,7 @@
 			el.innerHTML = '';
 			return;
 		}
-		var rate = parseFloat(is_bad_value(e_rate_krw.value) ? 45.4 : e_rate_krw.value);
+		var rate = parseFloat(is_bad_value(e_rate_krw.value) ? loadSavedRate() : e_rate_krw.value);
 		var krw = parseFloat(twd) * rate;
 		el.innerHTML = '≈ ' + fmtKRW(krw) + ' 韓元(KRW)';
 	}
@@ -301,7 +335,10 @@
 		{e_tailiang.value = 1;}
 
 		if (is_bad_value(e_rate_krw.value))
-		{e_rate_krw.value = 45.4;}
+		{
+			var savedRate = loadSavedRate();
+			e_rate_krw.value = savedRate;
+		}
 	}
 
 	function cal(t)
